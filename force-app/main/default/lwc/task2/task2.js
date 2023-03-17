@@ -13,7 +13,7 @@ export default class Task2 extends LightningElement {
     @wire(getRecord, { recordId: '$recordId', fields: [Name, Phone, Costs__c] }) account;
 
     get accountName (){
-        return getFieldValue(this.account.data, Name);
+        return getFieldValue(this.account.data,  );
     }
 
     get accountPhone (){
