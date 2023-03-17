@@ -1,0 +1,22 @@
+<!--
+ - Created by mariamalets on 28.02.2023.
+ -->
+
+<!-- Task 1 -->
+<template>
+    <lightning-quick-action-panel header = "Update Account">
+        <lightning-record-edit-form record-id={recordId}
+                                    object-api-name="Account"
+                                    onsuccess={handleSuccess}>
+            <lightning-input-field field-name="Name"></lightning-input-field>
+            <lightning-input-field field-name="Phone"></lightning-input-field>
+            <lightning-input-field field-name="Costs__c"></lightning-input-field>
+
+
+            <lightning-button variant="neutral" label={label.Cancel_Button} onclick={handleCancel} ></lightning-button>
+            <lightning-button variant="brand"  label="Save" type="submit"  ></lightning-button>
+
+
+        </lightning-record-edit-form>
+    </lightning-quick-action-panel>
+</template>
