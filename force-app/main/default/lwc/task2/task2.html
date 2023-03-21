@@ -2,9 +2,24 @@
   
         <lightning-card 
         title="Update Account">
-            <p>Name: {accountName}</p>
-            <p>Phone: {accountPhone} </p>
-            <p>Costs: {accountCosts}</p>
+      
+            <lightning-input label='Name' value={accountName} onchange={handleAccountNameChange}>
+            </lightning-input>
+
+            <lightning-input label='Phone' value={accountPhone} onchange={handleAccountPhoneChange}>
+            </lightning-input>
+
+            <lightning-input  label='Costs' value={accountCosts} onchange={handleAccountCostChange}>
+            </lightning-input>
+
+            <lightning-button variant='brand' label='Save'  onclick={updateAccount} class='cssClass'>
+            </lightning-button>
+
+            <lightning-button variant='neutral' label='Cancel'  onclick={handleOnClick} class='cssClass'>
+            </lightning-button>
+
+        
+           
         </lightning-card>  
     
              
