@@ -1,21 +1,24 @@
 <template>
-  
+    
+    <lightning-spinner if:true={isLoading} alternative-text="Loading"></lightning-spinner>
+
         <lightning-card 
+        if:false={isLoading}
         title="Update Account">
-      
+        
             <lightning-input label='Name' value={accountName} onchange={handleAccountNameChange}>
             </lightning-input>
 
-            <lightning-input label='Phone' value={accountPhone} onchange={handleAccountPhoneChange}>
+            <lightning-input label='Phone' x value={accountPhone} onchange={handleAccountPhoneChange}>
             </lightning-input>
 
-            <lightning-input  label='Costs' value={accountCosts} onchange={handleAccountCostChange}>
+            <lightning-input  label='Costs' type ='number' value={accountCosts} onchange={handleAccountCostChange}>
             </lightning-input>
 
-            <lightning-button variant='brand' label='Save'  onclick={updateAccount} class='cssClass'>
+            <lightning-button variant='brand' label='Save'  onclick={updateAccount} >
             </lightning-button>
 
-            <lightning-button variant='neutral' label='Cancel'  onclick={handleOnClick} class='cssClass'>
+            <lightning-button variant='neutral' label='Cancel'  onclick={handleCancel} >
             </lightning-button>
 
         

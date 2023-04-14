@@ -1,48 +1,46 @@
 import { getFieldValue, getRecord } from 'lightning/uiRecordApi';
 
-import { api, LightningElement, track, wire } from 'lwc';
+import { api, LightningElement, wire } from 'lwc';
 import { updateRecord } from 'lightning/uiRecordApi';
 
-import Name from '@salesforce/schema/Account.Name';
-import Phone from '@salesforce/schema/Account.Phone';
-import Costs__c from '@salesforce/schema/Account.Costs__c';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
+import NameField from '@salesforce/schema/Account.Name';
+import PhoneField from '@salesforce/schema/Account.Phone';
+import CostsField from '@salesforce/schema/Account.Costs__c';
 
 export default class Task2 extends LightningElement {
+
+    /* тож зроби таку ж компоненту для акаунта, ті ж філди, тільки без форми і не в квік екшині 
+    а давай на акаунт лайтнінг пейджу її винесемо
+в цьому випадку - компонента підтягує дані з рекорда
+save - апдейтить акаунт
+cancel - має рісетати компоненту, вертати до даних акаунта
+ Toast message для success/error випадків і spinner */
     @api recordId;
+    @api isLoading = false;
+
+    accountName;
+    accountCosts;
+    accountPhone;
     
-    // accountName;
-    // accountPhone;
-    // accountCosts;
+   @wire(getRecord, { recordId: '$recordId', fields: [NameField, PhoneField, CostsField] }) 
+   populateAccountFields({data}){
+
+
+    this.accountName = getFieldValue(data, NameField);
+    this.accountCosts = getFieldValue(data, CostsField);
+    this.accountPhone = getFieldValue(data, PhoneField);
+ 
+       
+  }
 
     
-   @wire(getRecord, { recordId: '$recordId', fields: [Name, Phone, Costs__c] }) account;
-
-//   connectedCallback(){
-//     this.accountName = this.getFieldValue(this.account.data,  Name);
-//     this.accountPhone = this.getFieldValue(this.account.data , Phone);
-//     this.accountCosts = this.getFieldValue(this.account.data , Costs__c);
-//   }
-
-//   getFieldValue(record, field) {
-//     return record ? record.fields[field.fieldApiName].value : '';
-// }
-
-    get accountName (){
-        return getFieldValue(this.account.data,  Name);
-    }
-
-    get accountPhone (){
-        return getFieldValue(this.account.data , Phone);
-    }
-
-    get accountCosts (){
-        return getFieldValue(this.account.data , Costs__c);
-    }
-
     handleAccountNameChange(event){
          // Update the account name variable with the new value
         this.accountName = event.target.value;
     }
+        
 
     handleAccountPhoneChange(event){
          // Update the account phone variable with the new value
@@ -54,12 +52,15 @@ export default class Task2 extends LightningElement {
         this.accountCosts = event.target.value;
     }
 
+   
+    
     updateAccount(){
+        debugger;
        
         const fields = {};
-        fields[Name.fieldApiName] = this.accountName;
-        fields[Phone.fieldApiName] = this.accountPhone;
-        fields[Costs__c.fieldApiName] = this.accountCosts;
+        fields[NameField.fieldApiName] = this.accountName;
+        fields[PhoneField.fieldApiName] = this.accountPhone;
+        fields[CostsField.fieldApiName] = this.accountCosts;
 
         const recordInput = { 
             fields, 
@@ -86,6 +87,10 @@ export default class Task2 extends LightningElement {
                 );
             });
 
+    }
+
+    handleCancel(event){
+        this.dispatchEvent(new CloseActionScreenEvent());
     }
   
     

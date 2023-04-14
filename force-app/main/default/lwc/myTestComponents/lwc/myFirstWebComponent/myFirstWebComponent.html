@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title={title}  icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+           <template for:each={contacts} for:item="contact">
+              <div key={contact.Id}>
+                 {contact.Name}, {contact.Title}
+            </div>
+
+           </template>
+        </div>
+
+
+        <lightning-input type='text' label='New title' onchange={handleTitle}>
+        </lightning-input>
+        
+        <lightning-button label='Change to standard label' onclick={handleOnClick}>
+      </lightning-button>
+
+     </lightning-card> 
+</template>

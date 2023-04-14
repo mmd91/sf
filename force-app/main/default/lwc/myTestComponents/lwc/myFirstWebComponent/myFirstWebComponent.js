@@ -1,4 +1,6 @@
+
 import { LightningElement, track } from 'lwc';
+
 export default class MyFirstWebComponent extends LightningElement {
     @track
     contacts = [
@@ -18,4 +20,15 @@ export default class MyFirstWebComponent extends LightningElement {
             Title: 'CEO',
         },
     ];
+
+    title = 'Contact Information';
+
+    handleOnClick(event){
+        this.title = 'NEW Contact Information';
+    }
+
+    handleTitle(event){
+        this.title = event.target.value;
+    }
+
 }

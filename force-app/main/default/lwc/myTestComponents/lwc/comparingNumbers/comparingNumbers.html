@@ -1,0 +1,23 @@
+<template>
+    <lightning-card label = 'The biggest number is:'>
+        <lightning-input  type="number" label='Number 1' value={num1}>
+        </lightning-input>
+
+        <lightning-input  type="number" label='Number 2' value={num2}>
+        </lightning-input>
+
+        <lightning-input  type="number" label='Number 3' value={num3}>
+        </lightning-input>
+
+   
+        <lightning-button  label='Calculate'  onclick={handleCalculate} >
+        </lightning-button>
+        
+        <p> {message}</p>
+
+        <lightning-button  label='Reset'  onclick={handleReset} >
+        </lightning-button>
+
+    </lightning-card>
+    
+</template>

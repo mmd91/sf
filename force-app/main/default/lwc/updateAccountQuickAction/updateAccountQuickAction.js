@@ -2,10 +2,8 @@
  */
 
 import { LightningElement, api } from 'lwc';
-import { updateRecord } from 'lightning/uiRecordApi';
 import { CloseActionScreenEvent } from 'lightning/actions';
 
-	
 import Cancel_Button from '@salesforce/label/c.Cancel_Button';
 import Save_Button from '@salesforce/label/c.Cancel_Button';
 
