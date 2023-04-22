@@ -18,8 +18,7 @@ save - апдейтить акаунт
 cancel - має рісетати компоненту, вертати до даних акаунта
  Toast message для success/error випадків і spinner */
     @api recordId;
-    @api isLoading = false;
-
+   
     accountName;
     accountCosts;
     accountPhone;
@@ -55,7 +54,7 @@ cancel - має рісетати компоненту, вертати до да�
    
     
     updateAccount(){
-        debugger;
+    
        
         const fields = {};
         fields[NameField.fieldApiName] = this.accountName;
